@@ -5,10 +5,8 @@ import time
 from bs4 import BeautifulSoup
 import HtmlDataSimpleAchieveModel
 
-reload(sys)
-sys.setdefaultencoding('utf8')
 
-class TencentNewChengDuSpider(HtmlDataSimpleAchieveModel.SpiderBase):
+class TencentNewsChengDuSpider(HtmlDataSimpleAchieveModel.SpiderBase):
 
     def __init__(self,seedUrl):
         self.seedUrl = seedUrl
@@ -30,7 +28,7 @@ class TencentNewChengDuSpider(HtmlDataSimpleAchieveModel.SpiderBase):
         hrefListsSoup = htmlSoup.find("div", class_="leftList").find_all(href=re.compile(r"http://cd.qq.com/a/+"))
         for hrefSoup in hrefListsSoup:
             newsUrl = hrefSoup.get("href")
-            newsYear = re.findall(r"http://cd.qq.com/a/(\d{4}.*?)\d*/",newsUrl,re.S)[0]
+            newsYear = re.findall(r"http://cd.qq.com/a/(\d{4}.*?)\d*/",newsUrl,re.S)[0].encode("utf-8")
             unformatTime = hrefSoup.find_next_sibling().string
             unformatTime = newsYear + "年" + unformatTime
             formatTime = time.strptime(unformatTime.encode("utf-8") ,"%Y年%m月%d日 %H:%M")
