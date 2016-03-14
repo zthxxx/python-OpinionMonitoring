@@ -3,10 +3,10 @@ import sys
 import re
 import time
 from bs4 import BeautifulSoup
-import HtmlDataSimpleAchieveModel
+from HtmlDataSimpleAchieveModel import SpiderBase
 
 
-class TencentNewsChengDuSpider(HtmlDataSimpleAchieveModel.SpiderBase):
+class TencentNewsChengDuSpider(SpiderBase):
 
     def __init__(self,seedUrl):
         self.seedUrl = seedUrl
@@ -29,15 +29,13 @@ class TencentNewsChengDuSpider(HtmlDataSimpleAchieveModel.SpiderBase):
         for hrefSoup in hrefListsSoup:
             newsUrl = hrefSoup.get("href")
             newsYear = re.findall(r"http://cd.qq.com/a/(\d{4}.*?)\d*/",newsUrl,re.S)[0].encode("utf-8")
-            unformatTime = hrefSoup.find_next_sibling().string
-            unformatTime = newsYear + "年" + unformatTime
-            formatTime = time.strptime(unformatTime.encode("utf-8") ,"%Y年%m月%d日 %H:%M")
-            formatTimeString = time.strftime("%Y-%m-%d %H:%M:%S", formatTime)
-            hrefSoup["time"] = formatTimeString.encode("utf-8")
+            unformatTimeString = hrefSoup.find_next_sibling().string
+            unformatTimeString = newsYear + "年" + unformatTimeString
+            hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y年%m月%d日 %H:%M")
         return hrefListsSoup
 
     def GetNewsListTotal(self):
-        newsDictListTotal = HtmlDataSimpleAchieveModel.SpiderBase.GetNewsListTotal(self,self.seedUrl)
+        newsDictListTotal = SpiderBase.GetNewsListTotal(self,self.seedUrl)
         return newsDictListTotal
 
 

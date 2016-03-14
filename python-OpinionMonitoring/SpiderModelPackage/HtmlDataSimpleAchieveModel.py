@@ -5,6 +5,7 @@ import urllib2
 import re
 import gzip
 import json
+import time
 from bs4 import BeautifulSoup
 from StringIO import StringIO
 from HashTools import MD5Tools
@@ -55,6 +56,11 @@ class SpiderBase:
         responseUnzip = self.DecompressGzip(responseRead)
         responseReadDecode = self.TryDecodeText(responseUnzip)
         return responseReadDecode
+
+    def FormatTimeString(self, unformatTimeString, unformatTimeStyle):
+        formatTime = time.strptime(unformatTimeString.encode("utf-8") ,unformatTimeStyle)
+        formatTimeString = time.strftime("%Y-%m-%d %H:%M:%S", formatTime).encode("utf-8")
+        return formatTimeString
 
         #TODO: Abstract method to get soup object with urls which you need.
         #TODO: The return soup must have text part, href, and time.
