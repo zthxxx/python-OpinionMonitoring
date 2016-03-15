@@ -8,11 +8,6 @@ from HtmlDataSimpleAchieveModel import SpiderBase
 
 class TencentNewsZiGongSpider(SpiderBase):
 
-    def __init__(self,seedUrl):
-        self.seedUrl = seedUrl
-        #self.NewsList = self.GetPageLinkUrls(self.seedUrl)
-        pass
-
     def FiltrateHrefRequiremnet(self,htmlRaw):
         htmlSoup = BeautifulSoup(htmlRaw, 'html.parser', from_encoding='utf-8')
         hrefListsSoup = htmlSoup.find("ul", class_="news_list_con").find_all(href=re.compile(r"http://cd.qq.com/a/+"))

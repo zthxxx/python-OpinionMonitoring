@@ -1,21 +1,33 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# coding:utf-8
 import sys
-import urllib2
+try:
+    import urllib2
+except ImportError:
+    import urllib.request
 import re
 import gzip
 import json
 import time
 from bs4 import BeautifulSoup
-from StringIO import StringIO
 from HashTools import MD5Tools
+try:
+    from io import BytesIO as StringIO
+except ImportError:
+    try:
+        from cStringIO import StringIO
+    except ImportError:
+        from StringIO import StringIO
 
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-
 class SpiderBase:
     def __init__(self):
+        pass
+
+    def __init__(self,seedUrl):
+        self.seedUrl = seedUrl
+        #self.NewsList = self.GetPageLinkUrls(self.seedUrl)
         pass
 
     #TODO: Abstract method to get the iterable list of urls which wait to travers.
@@ -58,7 +70,7 @@ class SpiderBase:
         return responseReadDecode
 
     def FormatTimeString(self, unformatTimeString, unformatTimeStyle):
-        formatTime = time.strptime(unformatTimeString.encode("utf-8") ,unformatTimeStyle)
+        formatTime = time.strptime(unformatTimeString.encode("utf-8") ,unformatTimeStyle.encode("utf-8"))
         formatTimeString = time.strftime("%Y-%m-%d %H:%M:%S", formatTime).encode("utf-8")
         return formatTimeString
 
@@ -87,16 +99,16 @@ class SpiderBase:
             newsDictList.append(aPieceOfNews)
         return newsDictList
 
-    #Give a url and get response news list in accordance with the rules at FiltrateHrefRequiremnet.
+    #Give a url and get response news list in accordance with the rules at FiltrateHrefRequirement.
     def GetNewsListTotal(self,NewsPageUrl):
         newsDictListTotal = []
-        try:
-            htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
-            newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
-            newsDictList = self.NewsUrlsParser(newsHrefLists)
-            newsDictListTotal.extend(newsDictList)
-        except:
-            return None
+        #try:
+        htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
+        newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
+        newsDictList = self.NewsUrlsParser(newsHrefLists)
+        newsDictListTotal.extend(newsDictList)
+        #except:
+        #   return None
         return newsDictListTotal
 
 

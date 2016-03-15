@@ -8,11 +8,6 @@ from HtmlDataSimpleAchieveModel import SpiderBase
 
 class TencentNewsChengDuSpider(SpiderBase):
 
-    def __init__(self,seedUrl):
-        self.seedUrl = seedUrl
-        self.NewsList = self.GetPageLinkUrls(self.seedUrl)
-        pass
-
     def GetPageLinkUrls(self,firstPageUrl):
         suffixHtmRule = "(\.htm)$"
         firstPageUrl = re.sub(suffixHtmRule,"",firstPageUrl)
@@ -37,7 +32,4 @@ class TencentNewsChengDuSpider(SpiderBase):
     def GetNewsListTotal(self):
         newsDictListTotal = SpiderBase.GetNewsListTotal(self,self.seedUrl)
         return newsDictListTotal
-
-
-
 

@@ -8,11 +8,6 @@ from HtmlDataSimpleAchieveModel import SpiderBase
 
 class NewsSiChuanNewsZiGongSpider(SpiderBase):
 
-    def __init__(self,seedUrl):
-        self.seedUrl = seedUrl
-        self.NewsList = self.GetPageLinkUrls(self.seedUrl)
-        pass
-
     def GetPageLinkUrls(self,firstPageUrl):
         newsPageUrls = []
         newsPageUrls.append(firstPageUrl)
