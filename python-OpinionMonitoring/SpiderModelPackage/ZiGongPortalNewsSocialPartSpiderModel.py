@@ -3,7 +3,7 @@ import sys
 import re
 import time
 from bs4 import BeautifulSoup
-from HtmlDataSimpleAchieveModel import SpiderBase
+from SpiderModelPackage.HtmlDataSimpleAchieveModel import SpiderBase
 
 
 class ZiGongPortalNewsSocialPartSpider(SpiderBase):

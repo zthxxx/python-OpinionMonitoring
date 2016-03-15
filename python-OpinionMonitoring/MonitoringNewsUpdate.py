@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append(r'I:\Project\Python\OpinionMonitoring\python-OpinionMonitoring\SpiderModelPackage')
 import json
 from  SpiderModelPackage.TencentNewsChengDuSpiderModel import TencentNewsChengDuSpider
 from  SpiderModelPackage.TencentNewsZiGongSpiderModel import TencentNewsZiGongSpider
 from  SpiderModelPackage.NewsSiChuanNewsZiGongSpiderModel import NewsSiChuanNewsZiGongSpider
 from  SpiderModelPackage.ZiGongPortalNewsSocialPartSpiderModel import ZiGongPortalNewsSocialPartSpider
+
 
 def DisplayNewsTotal(*args):
     for spider in args:
@@ -16,7 +16,6 @@ def DisplayNewsTotal(*args):
 
 
 if  __name__ == '__main__':
-
     spiderTencentChengDuNews = TencentNewsChengDuSpider(r"http://cd.qq.com/l/news/newshot/list2013071194632.htm")
     spiderTencentZiGongNews = TencentNewsZiGongSpider(r"http://cd.qq.com/news/shangq/zg.htm")
     spiderNewsSiChuanNews = NewsSiChuanNewsZiGongSpider(r"http://zg.newssc.org/news/")
