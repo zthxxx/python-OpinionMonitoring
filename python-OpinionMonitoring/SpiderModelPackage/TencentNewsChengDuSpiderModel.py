@@ -23,9 +23,13 @@ class TencentNewsChengDuSpider(SpiderBase):
         hrefListsSoup = htmlSoup.find("div", class_="leftList").find_all(href=re.compile(r"http://cd.qq.com/a/+"))
         for hrefSoup in hrefListsSoup:
             newsUrl = hrefSoup.get("href")
-            newsYear = re.findall(r"http://cd.qq.com/a/(\d{4}.*?)\d*/",newsUrl,re.S)[0].encode("utf-8")
+            newsYear = str(re.findall(r"http://cd.qq.com/a/(\d{4}.*?)\d*/",newsUrl,re.S)[0]) + "年"
             unformatTimeString = hrefSoup.find_next_sibling().string
-            unformatTimeString = newsYear + "年" + unformatTimeString
+            try:
+                unformatTimeString = unicode(unformatTimeString).encode("utf-8")
+            except:
+                pass
+            unformatTimeString = newsYear + unformatTimeString
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y年%m月%d日 %H:%M")
         return hrefListsSoup
 
@@ -33,3 +37,6 @@ class TencentNewsChengDuSpider(SpiderBase):
         newsDictListTotal = SpiderBase.GetNewsListTotal(self,self.seedUrl)
         return newsDictListTotal
 
+if  __name__ == '__main__':
+    spiderTencentChengDuNews = TencentNewsChengDuSpider(r"http://cd.qq.com/l/news/newshot/list2013071194632.htm")
+    print(spiderTencentChengDuNews.GetNewsListTotal())

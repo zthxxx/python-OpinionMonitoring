@@ -10,7 +10,7 @@ class ZiGongPortalNewsSocialPartSpider(SpiderBase):
 
     def FiltrateHrefRequiremnet(self,htmlRaw):
         textReRule = r'.+'
-        htmlSoup = BeautifulSoup(htmlRaw.encode("utf-8"), 'html.parser', from_encoding='utf-8')
+        htmlSoup = BeautifulSoup(htmlRaw, 'html.parser', from_encoding='utf-8')
         hrefListsSoup = htmlSoup.find("div",class_="list-news-l").find_all(href=re.compile(r"http://www.zgm.cn/html/a/+"),text=re.compile(textReRule))
         for hrefSoup in hrefListsSoup:
             unformatTimeString = hrefSoup.find_next_siblings()[-1]

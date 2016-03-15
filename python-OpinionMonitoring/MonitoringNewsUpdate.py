@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+sys.path.append(r'I:\Project\Python\OpinionMonitoring\python-OpinionMonitoring\SpiderModelPackage')
 import json
 from  SpiderModelPackage.TencentNewsChengDuSpiderModel import TencentNewsChengDuSpider
 from  SpiderModelPackage.TencentNewsZiGongSpiderModel import TencentNewsZiGongSpider
@@ -10,7 +11,7 @@ def DisplayNewsTotal(*args):
     for spider in args:
         if(hasattr(spider,"GetNewsListTotal")):
             newsDictListTotal=(spider.GetNewsListTotal())
-            print(json.dumps(newsDictListTotal, encoding="UTF-8", ensure_ascii=False))
+            print(json.dumps(newsDictListTotal,  ensure_ascii=False))
             print(len(newsDictListTotal))
 
 
