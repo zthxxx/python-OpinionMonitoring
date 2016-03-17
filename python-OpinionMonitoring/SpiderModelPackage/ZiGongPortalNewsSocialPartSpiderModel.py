@@ -18,8 +18,8 @@ class ZiGongPortalNewsSocialPartSpider(SpiderBase):
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y-%m-%d")
         return hrefListsSoup
 
-    def GetNewsListTotal(self):
-        newsDictListTotal = SpiderBase.GetNewsListTotal(self,self.seedUrl)
+    def GetNewsListAndPutToQueue(self):
+        newsDictListTotal = SpiderBase.GetNewsListAndPutToQueue(self,self.seedUrl)
         return newsDictListTotal
 
 

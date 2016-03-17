@@ -4,12 +4,17 @@ import re
 import gzip
 import json
 import time
+import itertools
 from bs4 import BeautifulSoup
 from HashTools import MD5Tools
 try:
+    import queue as Queue
+except:
+    import Queue
+try:
     import urllib2
 except ImportError:
-    import urllib.request
+    import urllib.request as urllib2
 try:
     from io import BytesIO as StringIO
 except ImportError:
@@ -17,9 +22,8 @@ except ImportError:
         from cStringIO import StringIO
     except ImportError:
         from StringIO import StringIO
+from ServerClientSocket.ProcessingQueueNode import ProcessingQueueNode
 
-# reload(sys)
-# sys.setdefaultencoding('utf8')
 
 class SpiderBase:
     def __init__(self):
@@ -27,13 +31,21 @@ class SpiderBase:
 
     def __init__(self,seedUrl):
         self.seedUrl = seedUrl
-        #self.NewsList = self.GetPageLinkUrls(self.seedUrl)
+        self.newsQueue = Queue.Queue()
+        self.spiderClawNode = None
+        #self.NewsUrlsList = self.GetPageLinkUrls(self.seedUrl)
         pass
+
+    def ConnectServer(self, ServerAddress, port, password):
+        if(self.spiderClawNode == None):
+            spiderClawNode = ProcessingQueueNode()
+            spiderClawNode.StartConnect(ServerAddress, port, password)
+            self.spiderClawNode = spiderClawNode
 
     #TODO: Abstract method to get the iterable list of urls which wait to travers.
     def GetPageLinkUrls(self,firstPageUrl):
         pass
-        return None
+        return firstPageUrl
 
     def RemovePunctuation(self,punctuationText):
         punctuation = "[\s+\.\!\/_,$%^*(+\"\']+|[A-Za-z0-9+——！“”''‘’""，。()？、~@#￥%……&*（）:：《》(图)]+"
@@ -61,12 +73,8 @@ class SpiderBase:
 
     def GetUrlResponseDecode(self,url):
         headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/30.0.1599.114 Chrome/30.0.1599.114 Safari/537.36','Accept-encoding':'gzip'}
-        if(sys.version >= '3'):
-            request = urllib.request.Request(url, headers = headers)
-            response = urllib.request.urlopen(request,timeout = 30)
-        else:
-            request = urllib2.Request(url, headers = headers)
-            response = urllib2.urlopen(request,timeout = 30)
+        request = urllib2.Request(url, headers = headers)
+        response = urllib2.urlopen(request,timeout = 30)
         responseRead = response.read()
         responseUnzip = self.DecompressGzip(responseRead)
         responseReadDecode = self.TryDecodeText(responseUnzip)
@@ -103,17 +111,20 @@ class SpiderBase:
         return newsDictList
 
     #Give a url and get response news list in accordance with the rules at FiltrateHrefRequirement.
-    def GetNewsListTotal(self,NewsPageUrl):
-        newsDictListTotal = []
-        #try:
-        htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
-        newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
-        newsDictList = self.NewsUrlsParser(newsHrefLists)
-        newsDictListTotal.extend(newsDictList)
-        # except:
-        #     return None
-        return newsDictListTotal
+    def GetNewsListTotal(self ,NewsPageUrl):
+        try:
+            htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
+            newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
+            newsDictList = self.NewsUrlsParser(newsHrefLists)
+        except:
+            return None
+        return newsDictList
 
+    def GetNewsListAndPutToQueue(self ,seedUrl):
+        newsDictListTotal = self.GetNewsListTotal(seedUrl)
+        if(isinstance(self.spiderClawNode,ProcessingQueueNode)):
+                self.spiderClawNode.PutResultQueue(newsDictListTotal)
+        return newsDictListTotal
 
 
 
