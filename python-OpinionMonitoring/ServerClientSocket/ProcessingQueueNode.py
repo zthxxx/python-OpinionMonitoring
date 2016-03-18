@@ -12,8 +12,6 @@ except:
 class ProcessingQueueNode():
     def __init__(self):
         self.queueManager = None
-        self.taskQueue = Queue.Queue()
-        self.resultQueue = Queue.Queue()
 
     def StartConnect(self, ServerAddress, port, password):
         if(self.queueManager == None):
