@@ -9,38 +9,30 @@ try:
 except:
     import Queue
 
-
-_ProcessingQueueManagerTaskQueue = Queue.Queue()
-_ProcessingQueueManagerResultQueue = Queue.Queue()
-
-def _ProcessingQueueManagerReturnTaskQueue():
-    return _ProcessingQueueManagerTaskQueue
-
-def _ProcessingQueueManagerReturnResultQueue():
-    return _ProcessingQueueManagerResultQueue
-
-
 class ProcessingQueueManager():
+
+    taskQueue = Queue.Queue()
+    resultQueue = Queue.Queue()
 
     def __init__(self):
         self.queueManager = None
-        self.taskQueue = Queue.Queue()
-        self.resultQueue = Queue.Queue()
 
     def __del__(self):
         if(self.queueManager != None):
             self.CloseManager()
 
-    def ReturnTaskQueue(self):
-        return self.taskQueue
+    @classmethod
+    def ReturnTaskQueue(cls):
+        return cls.taskQueue
 
-    def ReturnResultQueue(self):
-        return self.resultQueue
+    @classmethod
+    def ReturnResultQueue(cls):
+        return cls.resultQueue
 
     def StartManager(self, IPAddress, port, password):
         if(self.queueManager == None):
-            BaseManager.register('GetTaskQueue', callable=_ProcessingQueueManagerReturnTaskQueue)
-            BaseManager.register('GetResultQueue', callable=_ProcessingQueueManagerReturnResultQueue)
+            BaseManager.register('GetTaskQueue', callable=ProcessingQueueManager.ReturnTaskQueue)
+            BaseManager.register('GetResultQueue', callable=ProcessingQueueManager.ReturnResultQueue)
             queueManager = BaseManager(address=(IPAddress, port), authkey=password)
             queueManager.start()
             self.queueManager = queueManager
@@ -78,11 +70,11 @@ if __name__ == '__main__':
     server = ProcessingQueueManager()
     server.StartManager('127.0.0.1',5000,b'abc')
     print("OK")
-    # for n in range(100,110):
-    #     server.PutTaskQueue(n)
-    #     print("put %d" % n)
-    #
-    # for i in range(10):
-    #     print(server.GetResultQueuePopBlock())
+    for n in range(100,110):
+        server.PutTaskQueue(n)
+        print("put %d" % n)
+
+    for i in range(10):
+        print(server.GetResultQueuePopBlock())
 
 
