@@ -1,4 +1,4 @@
-# coding:utf-8
+# -*- coding: utf-8 -*-
 import sys
 import re
 import gzip
@@ -47,11 +47,6 @@ class SpiderBase:
         pass
         return firstPageUrl
 
-    def RemovePunctuation(self,punctuationText):
-        punctuation = "[\s+\.\!\/_,$%^*(+\"\']+|[A-Za-z0-9+——！“”''‘’""，。()？、~@#￥%……&*（）:：《》(图)]+"
-        NoPunctuationText = re.sub(punctuation, "", punctuationText)
-        return NoPunctuationText
-
     def TryDecodeText(self,text):
         try:
             text = unicode(text).encode('utf8')
@@ -61,6 +56,11 @@ class SpiderBase:
             except:
                 pass
         return text
+
+    def RemovePunctuation(self,punctuationText):
+        punctuation = u"""[\s+\.\!\/_,$%^*(+\"\']+|[A-Za-z0-9+——！“”''""‘’，。()？、~@#￥%……&*（）:：《》(图)]+"""
+        NoPunctuationText = re.sub(punctuation,"", punctuationText)
+        return NoPunctuationText
 
     def DecompressGzip(self,data) :
         compressedStream = StringIO(data)

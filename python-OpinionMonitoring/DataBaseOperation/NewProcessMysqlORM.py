@@ -57,9 +57,6 @@ class DataBaseORMModel(dict):
 
 
 
-
-
-
 if  __name__ == '__main__':
     mode = DataBaseORMModel()
     print("OK")
