@@ -7,30 +7,43 @@ from  SpiderModelPackage.TencentNewsChengDuSpiderModel import TencentNewsChengDu
 from  SpiderModelPackage.TencentNewsZiGongSpiderModel import TencentNewsZiGongSpider
 from  SpiderModelPackage.NewsSiChuanNewsZiGongSpiderModel import NewsSiChuanNewsZiGongSpider
 from  SpiderModelPackage.ZiGongPortalNewsSocialPartSpiderModel import ZiGongPortalNewsSocialPartSpider
-from ServerClientSocket.ProcessingQueueManager import ProcessingQueueManager
+from  ServerClientSocket.ProcessingQueueManager import ProcessingQueueManager
+from  ConfigFileInfoParser.InitializationConfigParser import InitializationConfigParser
+from DataBaseOperation.NewsProcessMysqlDBOperation import NewsProcessMysqlDBOperation
 
 
-connectKey = {'ipAddress':'127.0.0.1','port':5000,'key':b'abc'}
-
-def DisplayNewsTotal(*args):
+def DisplayNewsTotal(serverConnectConfig,*args):
     for spider in args:
         if(hasattr(spider,"GetNewsListTotal")):
-            spider.ConnectServer(connectKey['ipAddress'],connectKey['port'],connectKey['key'])
+            spider.ConnectServer(**serverConnectConfig)
             newsDictListTotal=spider.GetNewsListAndPutToQueue()
-            # print(len(newsDictListTotal) , json.dumps(newsDictListTotal,  ensure_ascii=False))
-
 
 
 if  __name__ == '__main__':
+
+    initializationConfigParser = InitializationConfigParser("ServerConfig.ini")
+    serverConnectConfig = initializationConfigParser.GetAllNodeItems("ServerSocket")
+    serverConnectConfig["port"] = int(serverConnectConfig.get("port"))
+    dataBaseConnectConfig = initializationConfigParser.GetAllNodeItems("DataBase")
+    dataBaseConnectConfig["port"] = int(dataBaseConnectConfig.get("port"))
+
+
     spiderTencentChengDuNews = TencentNewsChengDuSpider(r"http://cd.qq.com/l/news/newshot/list2013071194632.htm")
     spiderTencentZiGongNews = TencentNewsZiGongSpider(r"http://cd.qq.com/news/shangq/zg.htm")
     spiderNewsSiChuanNews = NewsSiChuanNewsZiGongSpider(r"http://zg.newssc.org/news/")
     spiderNewsSiChuanNewsZiGongNews = ZiGongPortalNewsSocialPartSpider(r"http://www.zgm.cn/html/news/soc/")
 
-    QueueManager = ProcessingQueueManager()
-    QueueManager.StartManager(connectKey['ipAddress'],connectKey['port'],connectKey['key'])
+    queueManager = ProcessingQueueManager()
+    queueManager.StartManager(**serverConnectConfig)
+    mysqlORM = NewsProcessMysqlDBOperation(**dataBaseConnectConfig)
+    mysqlORM.Connect()
 
-    DisplayNewsTotal(spiderTencentChengDuNews, spiderTencentZiGongNews,spiderNewsSiChuanNews, spiderNewsSiChuanNewsZiGongNews)
+    DisplayNewsTotal(serverConnectConfig,spiderTencentChengDuNews, spiderTencentZiGongNews,spiderNewsSiChuanNews, spiderNewsSiChuanNewsZiGongNews)
+
     while(True):
-        print(json.dumps(QueueManager.GetResultQueuePopBlock(),  ensure_ascii=False))
+        newsList = queueManager.GetResultQueuePopBlock()
+        print(json.dumps(newsList, ensure_ascii=False))
+        if(newsList is not None):
+            for newDict in newsList:
+                mysqlORM.SaveAPieceNews(**newDict)
 

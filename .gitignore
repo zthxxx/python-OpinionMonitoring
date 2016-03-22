@@ -1,3 +1,6 @@
 python-OpinionMonitoring\.idea\
 python-OpinionMonitoring/.idea/
 *.pyc
+*.conf
+*.ini
+*.xml

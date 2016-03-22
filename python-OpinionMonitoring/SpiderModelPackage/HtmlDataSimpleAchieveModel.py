@@ -36,10 +36,10 @@ class SpiderBase:
         #self.NewsUrlsList = self.GetPageLinkUrls(self.seedUrl)
         pass
 
-    def ConnectServer(self, ServerAddress, port, password):
+    def ConnectServer(self, serveraddress="localhost", port=80, key=None):
         if(self.spiderClawNode == None):
             spiderClawNode = ProcessingQueueNode()
-            spiderClawNode.StartConnect(ServerAddress, port, password)
+            spiderClawNode.StartConnect(serveraddress, port, key)
             self.spiderClawNode = spiderClawNode
 
     #TODO: Abstract method to get the iterable list of urls which wait to travers.
@@ -71,11 +71,26 @@ class SpiderBase:
             decodeData = data
         return decodeData
 
-    def GetUrlResponseDecode(self,url):
+    def GetUrlResponse(self,url):
         headers = {'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/30.0.1599.114 Chrome/30.0.1599.114 Safari/537.36','Accept-encoding':'gzip'}
         request = urllib2.Request(url, headers = headers)
-        response = urllib2.urlopen(request,timeout = 30)
+        try:
+            response = urllib2.urlopen(request,timeout = 30)
+        except urllib2.HTTPError as HTTPErrorInfo:
+            print(HTTPErrorInfo)
+            try:
+                response.close()
+            finally:
+                try:
+                    response = urllib2.urlopen(request,timeout = 30)
+                except:
+                    return None
         responseRead = response.read()
+        response.close()
+        return responseRead
+
+    def GetUrlResponseDecode(self,url):
+        responseRead = self.GetUrlResponse(url)
         responseUnzip = self.DecompressGzip(responseRead)
         responseReadDecode = self.TryDecodeText(responseUnzip)
         return responseReadDecode
@@ -98,6 +113,10 @@ class SpiderBase:
         newsDictList = []
         for hrefSoup in hrefListsSoup:
             newsTitle = hrefSoup.string
+            try:
+                newsTitle = str(newsTitle)
+            except:
+                pass
             newsNoPunctuationTitle = self.RemovePunctuation(newsTitle)
             newsUrl = hrefSoup.get("href")
             aPieceOfNews = dict()
@@ -116,7 +135,8 @@ class SpiderBase:
             htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
             newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
             newsDictList = self.NewsUrlsParser(newsHrefLists)
-        except:
+        except Exception as errorInfor:
+            print(errorInfor)
             return None
         return newsDictList
 

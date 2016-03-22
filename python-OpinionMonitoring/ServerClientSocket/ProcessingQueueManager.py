@@ -29,14 +29,17 @@ class ProcessingQueueManager():
     def ReturnResultQueue(cls):
         return cls.resultQueue
 
-    def StartManager(self, IPAddress, port, password):
+    def StartManager(self, serveraddress="Localhost", port=80, key=None):
         if(self.queueManager == None):
+            try:
+                key = key.encode("utf-8")
+            except:
+                pass
             BaseManager.register('GetTaskQueue', callable=ProcessingQueueManager.ReturnTaskQueue)
             BaseManager.register('GetResultQueue', callable=ProcessingQueueManager.ReturnResultQueue)
-            queueManager = BaseManager(address=(IPAddress, port), authkey=password)
+            queueManager = BaseManager(address=(serveraddress, port), authkey=key)
             queueManager.start()
             self.queueManager = queueManager
-            pass
 
     def PutTaskQueue(self,object):
         taskqueue = self.queueManager.GetTaskQueue()
