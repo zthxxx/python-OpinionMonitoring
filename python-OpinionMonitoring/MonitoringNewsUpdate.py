@@ -7,6 +7,8 @@ from  SpiderModelPackage.TencentNewsChengDuSpiderModel import TencentNewsChengDu
 from  SpiderModelPackage.TencentNewsZiGongSpiderModel import TencentNewsZiGongSpider
 from  SpiderModelPackage.NewsSiChuanNewsZiGongSpiderModel import NewsSiChuanNewsZiGongSpider
 from  SpiderModelPackage.ZiGongPortalNewsSocialPartSpiderModel import ZiGongPortalNewsSocialPartSpider
+from  SpiderModelPackage.LocalHtmlTestSpiderModel import LocalHtmlTestSpider
+
 from  ServerClientSocket.ProcessingQueueManager import ProcessingQueueManager
 from  ConfigFileInfoParser.InitializationConfigParser import InitializationConfigParser
 from DataBaseOperation.NewsProcessMysqlDBOperation import NewsProcessMysqlDBOperation
@@ -33,13 +35,14 @@ if  __name__ == '__main__':
     spiderTencentZiGongNews = TencentNewsZiGongSpider(r"http://cd.qq.com/news/shangq/zg.htm")
     spiderNewsSiChuanNews = NewsSiChuanNewsZiGongSpider(r"http://zg.newssc.org/news/")
     spiderNewsSiChuanNewsZiGongNews = ZiGongPortalNewsSocialPartSpider(r"http://www.zgm.cn/html/news/soc/")
+    SpiderLocalHtmlTest = LocalHtmlTestSpider(r"http://192.168.1.217:8080/MonitorSystem/reportlistAction")
 
     queueManager = ProcessingQueueManager()
     queueManager.StartManager(**serverConnectConfig)
     mysqlORM = NewsProcessMysqlDBOperation(**dataBaseConnectConfig)
     mysqlORM.Connect()
 
-    DisplayNewsTotal(serverConnectConfig,spiderTencentChengDuNews, spiderTencentZiGongNews,spiderNewsSiChuanNews, spiderNewsSiChuanNewsZiGongNews)
+    DisplayNewsTotal(serverConnectConfig,SpiderLocalHtmlTest)#,spiderTencentChengDuNews, spiderTencentZiGongNews,spiderNewsSiChuanNews, spiderNewsSiChuanNewsZiGongNews)
 
     while(True):
         newsList = queueManager.GetResultQueuePopBlock()
