@@ -16,9 +16,12 @@ class TencentNewsZiGongSpider(SpiderBase):
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y-%m-%d %H:%M:%S")
         return hrefListsSoup
 
-    def GetNewsListAndPutToQueue(self):
-        newsDictListTotal = SpiderBase.GetNewsListAndPutToQueue(self,self.seedUrl)
-        return newsDictListTotal
+    # def GetNewsListAndPutToQueue(self):
+    #     newsDictListTotal = SpiderBase.GetNewsListAndPutToQueue(self,self.seedUrl)
+    #     return newsDictListTotal
+
+    def StartMonitor(self):
+        SpiderBase.StartMonitor(self,self.seedUrl)
 
 
 

@@ -23,6 +23,23 @@ except ImportError:
     except ImportError:
         from StringIO import StringIO
 from ServerClientSocket.ProcessingQueueNode import ProcessingQueueNode
+from EventEngine.EventEngineBase import TimerEventEngine
+from EventEngine.EventType import *
+
+
+class HashAbleDict(dict):
+
+    def __hash__(self):
+        hashValue = self.get("UrlHash",None)
+        if(hashValue is None):
+            hashValue = self.get("TitleHash",None)
+        return hash(hashValue)
+
+    def __eq__(self, obj):
+        if ((self.get("UrlHash") == obj.get("UrlHash")) or (self.get("TitleHash") == obj.get("TitleHash"))):
+            return True
+        else:
+            return False
 
 
 class SpiderBase:
@@ -33,6 +50,8 @@ class SpiderBase:
         self.seedUrl = seedUrl
         self.newsQueue = Queue.Queue()
         self.spiderClawNode = None
+        self.allHistoryNewsList = set()
+        self.timerEventer = TimerEventEngine()
         #self.NewsUrlsList = self.GetPageLinkUrls(self.seedUrl)
         pass
 
@@ -110,7 +129,7 @@ class SpiderBase:
 
     #Result is a list of dict object ,each dict have the 'Title', 'NoPunctuationTitle', 'Url', 'TitleHash', 'UrlHash', and 'Time'.>
     def NewsUrlsParser(self,hrefListsSoup):
-        newsDictList = []
+        newsDictList = set()
         for hrefSoup in hrefListsSoup:
             newsTitle = hrefSoup.string
             try:
@@ -119,15 +138,17 @@ class SpiderBase:
                 pass
             newsNoPunctuationTitle = self.RemovePunctuation(newsTitle)
             newsUrl = hrefSoup.get("href")
-            aPieceOfNews = dict()
+            aPieceOfNews = HashAbleDict()
             aPieceOfNews["Title"] = newsTitle
             aPieceOfNews["NoPunctuationTitle"] = newsNoPunctuationTitle
             aPieceOfNews["Url"] = newsUrl
             aPieceOfNews["TitleHash"] = MD5Tools.MD5HashString(newsNoPunctuationTitle)
             aPieceOfNews["UrlHash"] = MD5Tools.MD5HashString(newsUrl)
             aPieceOfNews["Time"] = hrefSoup.get("time")
-            newsDictList.append(aPieceOfNews)
-        return newsDictList
+            if aPieceOfNews not in self.allHistoryNewsList:
+                self.allHistoryNewsList.add(aPieceOfNews)
+                newsDictList.add(aPieceOfNews)
+        return newsDictList if len(newsDictList) > 0 else None
 
     #Give a url and get response news list in accordance with the rules at FiltrateHrefRequirement.
     def GetNewsListTotal(self ,NewsPageUrl):
@@ -143,8 +164,20 @@ class SpiderBase:
     def GetNewsListAndPutToQueue(self ,seedUrl):
         newsDictListTotal = self.GetNewsListTotal(seedUrl)
         if(isinstance(self.spiderClawNode,ProcessingQueueNode)):
+            if(newsDictListTotal is not None):
                 self.spiderClawNode.PutResultQueue(newsDictListTotal)
         return newsDictListTotal
+
+    def ParameterDecorate(self,function,*args,**kwargs):
+        def Decorated(self):
+            return function(*args,**kwargs)
+        return Decorated
+
+    def StartMonitor(self ,seedUrl):
+        self.timerEventer.SetDelayTime(30)
+        self.timerEventer.register(EVENT_TIMER, self.ParameterDecorate(self.GetNewsListAndPutToQueue,seedUrl))
+        self.timerEventer.start()
+
 
 
 

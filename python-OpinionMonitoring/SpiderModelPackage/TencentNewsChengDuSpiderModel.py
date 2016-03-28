@@ -33,9 +33,12 @@ class TencentNewsChengDuSpider(SpiderBase):
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y年%m月%d日 %H:%M")
         return hrefListsSoup
 
-    def GetNewsListAndPutToQueue(self):
-        newsDictListTotal = SpiderBase.GetNewsListAndPutToQueue(self,self.seedUrl)
-        return newsDictListTotal
+    # def GetNewsListAndPutToQueue(self):
+    #     newsDictListTotal = SpiderBase.GetNewsListAndPutToQueue(self,self.seedUrl)
+    #     return newsDictListTotal
+
+    def StartMonitor(self):
+        SpiderBase.StartMonitor(self,self.seedUrl)
 
 if  __name__ == '__main__':
     spiderTencentChengDuNews = TencentNewsChengDuSpider(r"http://cd.qq.com/l/news/newshot/list2013071194632.htm")

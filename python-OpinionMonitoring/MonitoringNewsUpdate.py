@@ -16,7 +16,8 @@ def DisplayNewsTotal(serverConnectConfig,*args):
     for spider in args:
         if(hasattr(spider,"GetNewsListTotal")):
             spider.ConnectServer(**serverConnectConfig)
-            newsDictListTotal=spider.GetNewsListAndPutToQueue()
+            spider.StartMonitor()
+
 
 
 if  __name__ == '__main__':
@@ -42,8 +43,9 @@ if  __name__ == '__main__':
 
     while(True):
         newsList = queueManager.GetResultQueuePopBlock()
-        print(json.dumps(newsList, ensure_ascii=False))
+        print(json.dumps(list(newsList), ensure_ascii=False))
         if(newsList is not None):
             for newDict in newsList:
                 mysqlORM.SaveAPieceNews(**newDict)
+
 
