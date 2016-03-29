@@ -42,7 +42,7 @@ if  __name__ == '__main__':
     mysqlORM = NewsProcessMysqlDBOperation(**dataBaseConnectConfig)
     mysqlORM.Connect()
 
-    DisplayNewsTotal(serverConnectConfig,SpiderLocalHtmlTest)#,spiderTencentChengDuNews, spiderTencentZiGongNews,spiderNewsSiChuanNews, spiderNewsSiChuanNewsZiGongNews)
+    DisplayNewsTotal(serverConnectConfig,spiderTencentChengDuNews, spiderTencentZiGongNews,spiderNewsSiChuanNews, spiderNewsSiChuanNewsZiGongNews)
 
     while(True):
         newsList = queueManager.GetResultQueuePopBlock()

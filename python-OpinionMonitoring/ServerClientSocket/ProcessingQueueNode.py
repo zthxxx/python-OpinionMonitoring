@@ -44,6 +44,9 @@ class ProcessingQueueNode():
         resultQueue = self.queueManager.GetResultQueue()
         resultQueue.put(object)
 
+    def PutTaskQueue(self,object):
+        taskqueue = self.queueManager.GetTaskQueue()
+        taskqueue.put(object)
 
 if __name__ == '__main__':
     freeze_support()

@@ -27,6 +27,10 @@ from EventEngine.EventEngineBase import TimerEventEngine
 from EventEngine.EventType import *
 
 
+
+
+
+
 class HashAbleDict(dict):
 
     def __hash__(self):
@@ -40,6 +44,8 @@ class HashAbleDict(dict):
             return True
         else:
             return False
+
+
 
 
 class SpiderBase:
@@ -59,7 +65,15 @@ class SpiderBase:
         if(self.spiderClawNode == None):
             spiderClawNode = ProcessingQueueNode()
             spiderClawNode.StartConnect(serveraddress, port, key)
+            # listtest = []
+            # listtest.append(SpiderBase.queueprint)
+            # spiderClawNode.PutTaskQueue(listtest)
             self.spiderClawNode = spiderClawNode
+
+    @classmethod
+    def queueprint(cls):
+        print("put queue")
+        return 1
 
     #TODO: Abstract method to get the iterable list of urls which wait to travers.
     def GetPageLinkUrls(self,firstPageUrl):
@@ -98,12 +112,9 @@ class SpiderBase:
         except urllib2.HTTPError as HTTPErrorInfo:
             print(HTTPErrorInfo)
             try:
-                response.close()
-            finally:
-                try:
-                    response = urllib2.urlopen(request,timeout = 30)
-                except:
-                    return None
+                response = urllib2.urlopen(request,timeout = 30)
+            except:
+                return None
         responseRead = response.read()
         response.close()
         return responseRead
@@ -148,7 +159,7 @@ class SpiderBase:
             if aPieceOfNews not in self.allHistoryNewsList:
                 self.allHistoryNewsList.add(aPieceOfNews)
                 newsDictList.add(aPieceOfNews)
-        return newsDictList if len(newsDictList) > 0 else None
+        return newsDictList #if len(newsDictList) > 0 else None
 
     #Give a url and get response news list in accordance with the rules at FiltrateHrefRequirement.
     def GetNewsListTotal(self ,NewsPageUrl):
@@ -174,9 +185,14 @@ class SpiderBase:
         return Decorated
 
     def StartMonitor(self ,seedUrl):
-        self.timerEventer.SetDelayTime(30)
+        self.timerEventer.SetDelayTime(10)
         self.timerEventer.register(EVENT_TIMER, self.ParameterDecorate(self.GetNewsListAndPutToQueue,seedUrl))
         self.timerEventer.start()
+
+    def StopMonirot(self):
+        self.timerEventer.stop()
+
+
 
 
 

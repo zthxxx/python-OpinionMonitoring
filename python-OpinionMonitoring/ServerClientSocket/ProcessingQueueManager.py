@@ -60,6 +60,17 @@ class ProcessingQueueManager():
         resultQueue = self.queueManager.GetResultQueue()
         return resultQueue.get(timeout=timeout)
 
+    def GetTaskQueuePop(self):
+        taskQueue = self.queueManager.GetTaskQueue()
+        if(taskQueue.qsize() > 0):
+            return taskQueue.get()
+        else:
+            return None
+
+    def GetTaskQueuePopBlock(self, timeout=None):
+        taskQueue = self.queueManager.GetTaskQueue()
+        return taskQueue.get(timeout=timeout)
+
     def CloseManager(self):
         try:
             self.queueManager.shutdown()
