@@ -3,6 +3,10 @@
 # 系统模块
 import sys
 from datetime import datetime
+try:
+    import queue as Queue
+except:
+    import Queue
 from Queue import Queue, Empty
 from threading import Thread
 from time import sleep
@@ -11,7 +15,7 @@ from time import sleep
 from PyQt4.QtCore import QTimer
 from PyQt4.QtCore import QCoreApplication
 # 自己开发的模块
-from EventType import *
+from EventEngine.EventType import *
 
 
 ########################################################################
@@ -84,7 +88,7 @@ class EventEngine(object):
             try:
                 event = self.__queue.get(block = True, timeout = 1)  # 获取事件的阻塞时间设为1秒
                 self.__process(event)
-            except Empty:
+            except :
                 pass
 
     #----------------------------------------------------------------------
@@ -205,7 +209,7 @@ class TimerEventEngine(object):
             try:
                 event = self.__queue.get(block = True, timeout = 1)  # 获取事件的阻塞时间设为1秒
                 self.__process(event)
-            except Empty:
+            except :
                 pass
 
     #----------------------------------------------------------------------

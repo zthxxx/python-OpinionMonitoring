@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from numpy import *
 
 def setOfWords2Vec(vocabList, inputSet):
@@ -5,8 +6,8 @@ def setOfWords2Vec(vocabList, inputSet):
     for word in inputSet:
         if word in vocabList:
             returnVec[vocabList.index(word)] = 1
-        # else:
-            # print "the word: %s is not in my Vocabulary!" % word
+        else:
+            print "the word: %s is not in my Vocabulary!" % word
     return returnVec
 
 def createVocabList(dataSet):
@@ -35,10 +36,10 @@ def trainNB0(trainMatrix,trainCategory):
 def classifyNB(vec2Classify, p0Vec, p1Vec, pClass1):
     p1 = sum(vec2Classify * p1Vec) + log(pClass1)    #element-wise mult
     p0 = sum(vec2Classify * p0Vec) + log(1.0 - pClass1)
-    if p1 > p0:
-        return 1
-    else:
+    if p1 < p0:
         return 0
+    else:
+        return 1
 
 def bagOfWords2VecMN(vocabList, inputSet):
     returnVec = [0]*len(vocabList)

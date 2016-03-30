@@ -14,7 +14,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/python-OpinionMonitoring$MonitoringNewsUpdate.coverage" NAME="MonitoringNewsUpdate Coverage Results" MODIFIED="1459251151298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python-OpinionMonitoring$MonitoringNewsUpdate.coverage" NAME="MonitoringNewsUpdate Coverage Results" MODIFIED="1459337740393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python-OpinionMonitoring$EventType.coverage" NAME="EventType Coverage Results" MODIFIED="1458740041027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/EventEngine" />
     <SUITE FILE_PATH="coverage/python-OpinionMonitoring$ProcessingQueueManager__1_.coverage" NAME="ProcessingQueueManager (1) Coverage Results" MODIFIED="1458292488818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ServerClientSocket" />
     <SUITE FILE_PATH="coverage/python-OpinionMonitoring$NewProcessMysqlORM.coverage" NAME="NewProcessMysqlORM Coverage Results" MODIFIED="1458553832631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DataBaseOperation" />
@@ -40,28 +40,6 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="HtmlDataSimpleAchieveModel.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/SpiderModelPackage/HtmlDataSimpleAchieveModel.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="4.7774243">
-                    <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#24#34#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="python-OpinionMonitoring" />
@@ -72,30 +50,7 @@
         <entry file="file://$PROJECT_DIR$/MonitoringNewsUpdate.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="0" selection-start-line="39" selection-start-column="4" selection-end-line="54" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MysqlDBOperation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataBaseOperation/MysqlDBOperation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-              <folding>
-                <marker date="1458630356552" expanded="true" signature="2796:2870" placeholder="INSERT into news_processor.newsdetails... " />
-                <marker date="1458630356552" expanded="true" signature="2994:3019" placeholder="select * fro... newsdetails" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewsProcessMysqlDBOperation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DataBaseOperation/NewsProcessMysqlDBOperation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -111,11 +66,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TencentNewsChengDuSpiderModel.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsChengDuSpiderModel.py">
+      <file leaf-file-name="HtmlDataSimpleAchieveModel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpiderModelPackage/HtmlDataSimpleAchieveModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.91956127">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state vertical-scroll-proportion="6.0">
+              <caret line="188" column="27" selection-start-line="188" selection-start-column="15" selection-end-line="188" selection-end-column="27" />
+              <folding>
+                <element signature="e#24#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ZiGongPortalNewsSocialPartSpiderModel.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SpiderModelPackage/ZiGongPortalNewsSocialPartSpiderModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.36263737">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
               </folding>
@@ -127,8 +94,46 @@
         <entry file="file://$PROJECT_DIR$/SpiderModelPackage/NewsSiChuanNewsZiGongSpiderModel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-              <folding />
+              <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+              <folding>
+                <element signature="e#24#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LocalHtmlTestSpiderModel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpiderModelPackage/LocalHtmlTestSpiderModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding>
+                <element signature="e#24#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TencentNewsZiGongSpiderModel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsZiGongSpiderModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+              <folding>
+                <element signature="e#24#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TencentNewsChengDuSpiderModel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsChengDuSpiderModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+              <folding>
+                <element signature="e#24#34#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,21 +171,21 @@
         <option value="$PROJECT_DIR$/HashTools/testBaseManager.py" />
         <option value="$PROJECT_DIR$/ConfigFileInfoParser/InitializationConfigParser.py" />
         <option value="$PROJECT_DIR$/DataBaseOperation/NewsProcessMysqlOperation.py" />
-        <option value="$PROJECT_DIR$/DataBaseOperation/NewsProcessMysqlDBOperation.py" />
         <option value="$PROJECT_DIR$/DataBaseOperation/MysqlDBOperation.py" />
         <option value="$PROJECT_DIR$/DataBaseOperation/NewProcessMysqlORM.py" />
-        <option value="$PROJECT_DIR$/EventEngine/EventType.py" />
-        <option value="$PROJECT_DIR$/SpiderModelPackage/TencentNewsChengDuSpiderModel.py" />
-        <option value="$PROJECT_DIR$/SpiderModelPackage/TencentNewsZiGongSpiderModel.py" />
-        <option value="$PROJECT_DIR$/SpiderModelPackage/ZiGongPortalNewsSocialPartSpiderModel.py" />
-        <option value="$PROJECT_DIR$/SpiderModelPackage/NewsSiChuanNewsZiGongSpiderModel.py" />
-        <option value="$PROJECT_DIR$/EventEngine/EventEngineBase.py" />
         <option value="$PROJECT_DIR$/SpiderModelPackage/SpiderTestLocalHtmlModel.py" />
         <option value="$PROJECT_DIR$/SpiderModelPackage/LocalHtmlTestSpiderModel.py" />
-        <option value="$PROJECT_DIR$/MonitoringNewsUpdate.py" />
         <option value="$PROJECT_DIR$/ServerClientSocket/ProcessingQueueNode.py" />
         <option value="$PROJECT_DIR$/ServerClientSocket/ProcessingQueueManager.py" />
+        <option value="$PROJECT_DIR$/EventEngine/EventType.py" />
+        <option value="$PROJECT_DIR$/DataBaseOperation/NewsProcessMysqlDBOperation.py" />
+        <option value="$PROJECT_DIR$/EventEngine/EventEngineBase.py" />
+        <option value="$PROJECT_DIR$/SpiderModelPackage/ZiGongPortalNewsSocialPartSpiderModel.py" />
+        <option value="$PROJECT_DIR$/SpiderModelPackage/TencentNewsZiGongSpiderModel.py" />
+        <option value="$PROJECT_DIR$/SpiderModelPackage/TencentNewsChengDuSpiderModel.py" />
+        <option value="$PROJECT_DIR$/MonitoringNewsUpdate.py" />
         <option value="$PROJECT_DIR$/SpiderModelPackage/HtmlDataSimpleAchieveModel.py" />
+        <option value="$PROJECT_DIR$/SpiderModelPackage/NewsSiChuanNewsZiGongSpiderModel.py" />
       </list>
     </option>
   </component>
@@ -190,7 +195,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
+    <option name="x" value="-243" />
+    <option name="y" value="288" />
     <option name="width" value="1378" />
     <option name="height" value="735" />
   </component>
@@ -241,8 +247,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -347,6 +351,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -687,19 +693,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
+    <frame x="-243" y="288" width="1378" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2754173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27996966" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38956523" sideWeight="0.41893938" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38782609" sideWeight="0.41893938" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32869565" sideWeight="0.5030257" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263889" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3269565" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="false" show_stripe_button="true" weight="0.6545139" sideWeight="0.5810606" order="13" side_tool="true" content_ui="tabs" x="101" y="170" width="931" height="416" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="1.0" sideWeight="0.5810606" order="13" side_tool="true" content_ui="tabs" x="1429" y="196" width="1294" height="385" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -726,6 +732,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsChengDuSpiderModel.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -736,7 +749,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="182" />
+      <option name="time" value="195" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -759,7 +772,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -999,6 +1014,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33272395">
           <caret line="716" column="8" selection-start-line="716" selection-start-column="8" selection-end-line="716" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1009,64 +1025,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EventEngine/EventType.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.488117">
-          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsZiGongSpiderModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="20" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/ZiGongPortalNewsSocialPartSpiderModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4771481">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="22" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/NewsSiChuanNewsZiGongSpiderModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EventEngine/EventEngineBase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="273" column="30" selection-start-line="273" selection-start-column="24" selection-end-line="273" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ServerClientSocket/ProcessingQueueNode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8318099">
           <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataBaseOperation/MysqlDBOperation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.12614259">
+          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+          <folding>
+            <marker date="1458630356552" expanded="true" signature="2796:2870" placeholder="INSERT into news_processor.newsdetails... " />
+            <marker date="1458630356552" expanded="true" signature="2994:3019" placeholder="select * fro... newsdetails" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EventEngine/EventType.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ServerClientSocket/ProcessingQueueManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55758685">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="9" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/LocalHtmlTestSpiderModel.py">
+    <entry file="file://$PROJECT_DIR$/DataBaseOperation/NewsProcessMysqlDBOperation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.040219378">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EventEngine/EventEngineBase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.066667">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
           <folding>
-            <element signature="e#24#34#0" expanded="true" />
+            <element signature="e#26#36#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1074,19 +1080,8 @@
     <entry file="file://$PROJECT_DIR$/MonitoringNewsUpdate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="0" selection-start-line="39" selection-start-column="4" selection-end-line="54" selection-end-column="0" />
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBaseOperation/MysqlDBOperation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-          <folding>
-            <marker date="1458630356552" expanded="true" signature="2796:2870" placeholder="INSERT into news_processor.newsdetails... " />
-            <marker date="1458630356552" expanded="true" signature="2994:3019" placeholder="select * fro... newsdetails" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1098,18 +1093,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DataBaseOperation/NewsProcessMysqlDBOperation.py">
+    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/LocalHtmlTestSpiderModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/HtmlDataSimpleAchieveModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.7774243">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="e#24#34#0" expanded="true" />
           </folding>
@@ -1118,8 +1105,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsChengDuSpiderModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.91956127">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/TencentNewsZiGongSpiderModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/NewsSiChuanNewsZiGongSpiderModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/HtmlDataSimpleAchieveModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.0">
+          <caret line="188" column="27" selection-start-line="188" selection-start-column="15" selection-end-line="188" selection-end-column="27" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpiderModelPackage/ZiGongPortalNewsSocialPartSpiderModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36263737">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="e#24#34#0" expanded="true" />
           </folding>

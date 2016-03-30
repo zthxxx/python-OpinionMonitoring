@@ -149,27 +149,43 @@ class SpiderBase:
                 pass
             newsNoPunctuationTitle = self.RemovePunctuation(newsTitle)
             newsUrl = hrefSoup.get("href")
-            aPieceOfNews = HashAbleDict()
-            aPieceOfNews["Title"] = newsTitle
-            aPieceOfNews["NoPunctuationTitle"] = newsNoPunctuationTitle
-            aPieceOfNews["Url"] = newsUrl
-            aPieceOfNews["TitleHash"] = MD5Tools.MD5HashString(newsNoPunctuationTitle)
-            aPieceOfNews["UrlHash"] = MD5Tools.MD5HashString(newsUrl)
-            aPieceOfNews["Time"] = hrefSoup.get("time")
-            if aPieceOfNews not in self.allHistoryNewsList:
-                self.allHistoryNewsList.add(aPieceOfNews)
+            UrlHash = MD5Tools.MD5HashString(newsUrl)
+            if UrlHash not in self.allHistoryNewsList:
+                self.allHistoryNewsList.add(UrlHash)
+                aPieceOfNews = HashAbleDict()
+                aPieceOfNews["Title"] = newsTitle
+                aPieceOfNews["NoPunctuationTitle"] = newsNoPunctuationTitle
+                aPieceOfNews["Url"] = newsUrl
+                aPieceOfNews["TitleHash"] = MD5Tools.MD5HashString(newsNoPunctuationTitle)
+                aPieceOfNews["UrlHash"] = UrlHash
+                aPieceOfNews["Time"] = hrefSoup.get("time")
                 newsDictList.add(aPieceOfNews)
-        return newsDictList #if len(newsDictList) > 0 else None
+                return  newsDictList
+        return newsDictList if len(newsDictList) > 0 else None
+
+    def GetNewsListSummary(self,newsDictList):
+        if (newsDictList is None):
+            return None
+        for news in newsDictList:
+            news["Summary"] = ""
+            newsUrl = news.get("Url",None)
+            if (newsUrl is not None):
+                news["Summary"] = self.GetNewsUrlSummary(newsUrl)
+        return newsDictList
+
+    def GetNewsUrlSummary(self,newsUrl):
+        return None
 
     #Give a url and get response news list in accordance with the rules at FiltrateHrefRequirement.
     def GetNewsListTotal(self ,NewsPageUrl):
-        try:
-            htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
-            newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
-            newsDictList = self.NewsUrlsParser(newsHrefLists)
-        except Exception as errorInfor:
-            print(errorInfor)
-            return None
+        # try:
+        htmlRaw = self.GetUrlResponseDecode(NewsPageUrl)
+        newsHrefLists = self.FiltrateHrefRequiremnet(htmlRaw)
+        newsDictList = self.NewsUrlsParser(newsHrefLists)
+        newsDictList = self.GetNewsListSummary(newsDictList)
+        # except Exception as errorInfor:
+        #     print(errorInfor)
+        #     return None
         return newsDictList
 
     def GetNewsListAndPutToQueue(self ,seedUrl):

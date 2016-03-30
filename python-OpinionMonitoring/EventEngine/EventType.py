@@ -39,8 +39,8 @@ def FiltrateRepeat():
         if len(value)>1:
             print ('存在重复的常量定义:' + str(key))
             for name in value:
-                print name
-            print ''
+                print(name)
+            print('')
 
     print('测试完毕')
 
