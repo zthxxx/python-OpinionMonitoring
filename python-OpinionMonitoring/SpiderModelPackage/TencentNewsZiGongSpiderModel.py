@@ -18,7 +18,7 @@ class TencentNewsZiGongSpider(SpiderBase):
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y-%m-%d %H:%M:%S")
         return hrefListsSoup
 
-    def GetNewsUrlSummary(self,newsUrl):
+    def GetNewsTextNodeSoup(self,newsUrl):
         htmlRaw = self.GetUrlResponseDecode(newsUrl)
         htmlSoup = BeautifulSoup(htmlRaw, 'html.parser', from_encoding='GBK')
         newsTextNode = htmlSoup.find_all("p",style="TEXT-INDENT: 2em")
@@ -28,14 +28,7 @@ class TencentNewsZiGongSpider(SpiderBase):
             htmlRaw = self.GetUrlResponseDecode(jsAjaxUrl)
             htmlSoup = BeautifulSoup(htmlRaw, 'html.parser', from_encoding='GBK')
             newsTextNode = htmlSoup.find_all("p")
-        newsText = " ".join(map(lambda node : node.get_text(),newsTextNode))
-        try:
-            newsText = unicode(newsText)
-        except:
-            pass
-        snow = SnowNLP(newsText)
-        mainText = snow.summary(3)
-        return " ".join(mainText)
+        return newsTextNode
 
 
     def StartMonitor(self):

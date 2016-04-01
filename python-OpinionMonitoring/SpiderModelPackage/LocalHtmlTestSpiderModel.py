@@ -20,6 +20,8 @@ class LocalHtmlTestSpider(SpiderBase):
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y-%m-%d %H:%M:%S.%f")
         return hrefListsSoup
 
+    def GetNewsUrlSummary(self,newsUrl):
+        return "dfa"
 
     def StartMonitor(self):
         SpiderBase.StartMonitor(self,self.seedUrl)

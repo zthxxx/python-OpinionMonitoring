@@ -6,6 +6,7 @@ import json
 import time
 import itertools
 from bs4 import BeautifulSoup
+from snownlp import SnowNLP
 from HashTools import MD5Tools
 try:
     import queue as Queue
@@ -58,6 +59,7 @@ class SpiderBase:
         self.spiderClawNode = None
         self.allHistoryNewsList = set()
         self.timerEventer = TimerEventEngine()
+        self.MaxSummaryLen = 255
         #self.NewsUrlsList = self.GetPageLinkUrls(self.seedUrl)
         pass
 
@@ -160,21 +162,38 @@ class SpiderBase:
                 aPieceOfNews["UrlHash"] = UrlHash
                 aPieceOfNews["Time"] = hrefSoup.get("time")
                 newsDictList.add(aPieceOfNews)
-                return  newsDictList
+                return newsDictList
         return newsDictList if len(newsDictList) > 0 else None
+
+    def GetAPieceNewsSummary(self,news):
+        news["Summary"] = ""
+        newsUrl = news.get("Url",None)
+        if (newsUrl is not None):
+            news["Summary"] = self.GetNewsUrlSummary(newsUrl)
 
     def GetNewsListSummary(self,newsDictList):
         if (newsDictList is None):
             return None
-        for news in newsDictList:
-            news["Summary"] = ""
-            newsUrl = news.get("Url",None)
-            if (newsUrl is not None):
-                news["Summary"] = self.GetNewsUrlSummary(newsUrl)
+        map(self.GetAPieceNewsSummary,newsDictList)
         return newsDictList
 
-    def GetNewsUrlSummary(self,newsUrl):
+    def GetNewsTextNodeSoup(self,newsUrl):
         return None
+
+    def GetNewsUrlSummary(self,newsUrl):
+        newsTextNode = self.GetNewsTextNodeSoup(newsUrl)
+        newsText = " ".join(map(lambda node : node.get_text(),newsTextNode))
+        try:
+            newsText = unicode(newsText)
+        except:
+            pass
+        snow = SnowNLP(newsText)
+        summaryList = snow.summary(3)
+        map(lambda aPieceSummary:(len(aPieceSummary) > self.MaxSummaryLen) and summaryList.remove(aPieceSummary),summaryList)
+        summaryText = " ".join(summaryList)
+        if len(summaryText) > self.MaxSummaryLen:
+            summaryText = summaryText[0:self.MaxSummaryLen]
+        return summaryText
 
     #Give a url and get response news list in accordance with the rules at FiltrateHrefRequirement.
     def GetNewsListTotal(self ,NewsPageUrl):

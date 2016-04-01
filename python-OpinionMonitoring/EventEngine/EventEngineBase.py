@@ -7,13 +7,10 @@ try:
     import queue as Queue
 except:
     import Queue
-from Queue import Queue, Empty
 from threading import Thread
 from time import sleep
+from threading import Timer
 
-# 第三方模块
-from PyQt4.QtCore import QTimer
-from PyQt4.QtCore import QCoreApplication
 # 自己开发的模块
 from EventEngine.EventType import *
 
@@ -65,7 +62,7 @@ class EventEngine(object):
     def __init__(self):
         """初始化事件引擎"""
         # 事件队列
-        self.__queue = Queue()
+        self.__queue = Queue.Queue()
 
         # 事件引擎开关
         self.__active = False
@@ -74,7 +71,7 @@ class EventEngine(object):
         self.__thread = Thread(target = self.__run)
 
         # 计时器，用于触发计时器事件
-        self.__timer = QTimer()
+        self.__timer = Timer()
         self.__timer.timeout.connect(self.__onTimer)
 
         # 这里的__handlers是一个字典，用来保存对应的事件调用关系
@@ -183,7 +180,7 @@ class TimerEventEngine(object):
     def __init__(self,delayTime = 60):
         """初始化事件引擎"""
         # 事件队列
-        self.__queue = Queue()
+        self.__queue = Queue.Queue()
 
         # 事件引擎开关
         self.__active = False

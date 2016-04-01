@@ -20,19 +20,12 @@ class ZiGongPortalNewsSocialPartSpider(SpiderBase):
             hrefSoup["time"] = self.FormatTimeString(unformatTimeString, "%Y-%m-%d")
         return hrefListsSoup
 
-    def GetNewsUrlSummary(self,newsUrl):
+    def GetNewsTextNodeSoup(self,newsUrl):
         htmlRaw = self.GetUrlResponseDecode(newsUrl)
         htmlSoup = BeautifulSoup(htmlRaw, 'html.parser', from_encoding='GBK')
         newsTextNode = htmlSoup.find("div",class_="a3")
         newsTextNodes = newsTextNode.find_all("p")
-        newsText = " ".join(map(lambda node : node.get_text(),newsTextNodes))
-        try:
-            newsText = unicode(newsText)
-        except:
-            pass
-        snow = SnowNLP(newsText)
-        mainText = snow.summary(3)
-        return " ".join(mainText)
+        return newsTextNode
 
     def StartMonitor(self):
         SpiderBase.StartMonitor(self,self.seedUrl)

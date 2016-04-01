@@ -29,6 +29,7 @@ class MysqlDBOperation:
                 return None
         return TryUseMethod
 
+    @IsRaiseError
     def TryCommit(self):
         try:
             self.MysqlLinker.commit()
@@ -51,34 +52,34 @@ class MysqlDBOperation:
             print("MysqlDataBase disconnect.")
 
     #@IsRaiseError
-    def Select(self,sqlSentence,tupleArgs):
+    def Select(self,sqlSentence,args=()):
         cursor = self.MysqlLinker.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute(sqlSentence,tupleArgs)
+        cursor.execute(sqlSentence,args)
         result = cursor.fetchall()
         return result
 
     #@IsRaiseError
-    def CallPorcess(self,procname,tupleArgs):
-        cursor = self.MysqlLinker.cursor()
-        cursor.callproc(procname,tupleArgs)
+    def CallPorcess(self,procname,args=()):
+        cursor = self.MysqlLinker.cursor(MySQLdb.cursors.DictCursor)
+        cursor.callproc(procname,args)
+        self.TryCommit()
         result = cursor.fetchall()
-        self.MysqlLinker.commit()
         return result
 
     #@IsRaiseError
-    def InsertOrUpdate(self,sqlSentence,tupleArgs,many=False):
+    def InsertOrUpdate(self,sqlSentence,args,many=False):
         cursor = self.MysqlLinker.cursor()
         if(many is True):
-            count = cursor.executemany(sqlSentence,tupleArgs)
+            count = cursor.executemany(sqlSentence,args)
         else:
-            count = cursor.execute(sqlSentence,tupleArgs)
+            count = cursor.execute(sqlSentence,args)
         self.TryCommit()
         return count
 
     #@IsRaiseError
-    def CreateOrDelete(self,sqlSentence,tupleArgs):
+    def CreateOrDelete(self,sqlSentence,args=()):
         cursor = self.MysqlLinker.cursor()
-        cursor.execute(sqlSentence,tupleArgs)
+        cursor.execute(sqlSentence,args)
         self.TryCommit()
         return None
 
