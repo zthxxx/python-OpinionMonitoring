@@ -23,9 +23,8 @@ if  __name__ == '__main__':
     mysqlORM = NewsProcessMysqlDBOperation(**dataBaseConnectConfig)
     mysqlORM.Connect()
 
-    p0Vector,p1Vector,vocabularies = mysqlORM.SelectBayesVector()
-    pAb = 0.4545454545
-    bayes = BayesClassify(p0Vector,p1Vector,pAb,vocabularies)
+    p0Vector,p1Vector,pAbusive,vocabularies = mysqlORM.SelectBayesVector()
+    bayes = BayesClassify(p0Vector,p1Vector,pAbusive,vocabularies)
 
 
     while(True):

@@ -25,10 +25,14 @@ class NewsProcessMysqlDBOperation(MysqlDBOperation):
 
     def SelectBayesVector(self):
         result = self.CallPorcess("SelectBayesVector")
+        pAbusiveList = self.Select(r"select (count(*)/(select count(*) from news_processor.trainset)) AccidentScale from news_processor.trainset where news_processor.trainset.isaccident = 1;")
+        pAbusiveNode = list(pAbusiveList).pop()
+        pAbusive =  pAbusiveNode.get("AccidentScale",0)
+        pAbusive = float(pAbusive)
         p0VectorList = map(lambda vector:vector.get("P0Vector",None) ,result)
         p1VectorList = map(lambda vector:vector.get("P1Vector",None) ,result)
-        VocabularysList = map(lambda vector:vector.get("Vocabulary",None) ,result)
-        return p0VectorList,p1VectorList,VocabularysList
+        VocabulariesList = map(lambda vector:vector.get("Vocabulary",None) ,result)
+        return p0VectorList,p1VectorList,pAbusive,VocabulariesList
 
 
 

@@ -24,8 +24,8 @@ class ZiGongPortalNewsSocialPartSpider(SpiderBase):
         htmlRaw = self.GetUrlResponseDecode(newsUrl)
         htmlSoup = BeautifulSoup(htmlRaw, 'html.parser', from_encoding='GBK')
         newsTextNode = htmlSoup.find("div",class_="a3")
-        newsTextNodes = newsTextNode.find_all("p")
-        return newsTextNode
+        newsTextNodeList = newsTextNode.find_all("p")
+        return newsTextNodeList
 
     def StartMonitor(self):
         SpiderBase.StartMonitor(self,self.seedUrl)

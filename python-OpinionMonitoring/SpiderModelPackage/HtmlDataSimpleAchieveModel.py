@@ -5,6 +5,7 @@ import gzip
 import json
 import time
 import itertools
+from multiprocessing import Pool
 from bs4 import BeautifulSoup
 from snownlp import SnowNLP
 from HashTools import MD5Tools
@@ -26,10 +27,6 @@ except ImportError:
 from ServerClientSocket.ProcessingQueueNode import ProcessingQueueNode
 from EventEngine.EventEngineBase import TimerEventEngine
 from EventEngine.EventType import *
-
-
-
-
 
 
 class HashAbleDict(dict):
@@ -67,15 +64,7 @@ class SpiderBase:
         if(self.spiderClawNode == None):
             spiderClawNode = ProcessingQueueNode()
             spiderClawNode.StartConnect(serveraddress, port, key)
-            # listtest = []
-            # listtest.append(SpiderBase.queueprint)
-            # spiderClawNode.PutTaskQueue(listtest)
             self.spiderClawNode = spiderClawNode
-
-    @classmethod
-    def queueprint(cls):
-        print("put queue")
-        return 1
 
     #TODO: Abstract method to get the iterable list of urls which wait to travers.
     def GetPageLinkUrls(self,firstPageUrl):
@@ -170,6 +159,7 @@ class SpiderBase:
         newsUrl = news.get("Url",None)
         if (newsUrl is not None):
             news["Summary"] = self.GetNewsUrlSummary(newsUrl)
+        return news
 
     def GetNewsListSummary(self,newsDictList):
         if (newsDictList is None):
@@ -177,12 +167,13 @@ class SpiderBase:
         map(self.GetAPieceNewsSummary,newsDictList)
         return newsDictList
 
+
     def GetNewsTextNodeSoup(self,newsUrl):
         return None
 
     def GetNewsUrlSummary(self,newsUrl):
-        newsTextNode = self.GetNewsTextNodeSoup(newsUrl)
-        newsText = " ".join(map(lambda node : node.get_text(),newsTextNode))
+        newsTextNodeSoup = self.GetNewsTextNodeSoup(newsUrl)
+        newsText = " ".join(map(lambda node : node.get_text(),newsTextNodeSoup))
         try:
             newsText = unicode(newsText)
         except:
@@ -220,7 +211,7 @@ class SpiderBase:
         return Decorated
 
     def StartMonitor(self ,seedUrl):
-        self.timerEventer.SetDelayTime(10)
+        self.timerEventer.SetDelayTime(3)
         self.timerEventer.register(EVENT_TIMER, self.ParameterDecorate(self.GetNewsListAndPutToQueue,seedUrl))
         self.timerEventer.start()
 

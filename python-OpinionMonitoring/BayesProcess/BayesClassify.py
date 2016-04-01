@@ -64,11 +64,9 @@ class BayesClassify():
         for postingDoc in docList:
             trainMat.append(BayesBase.setOfWords2Vec(vocabList, postingDoc))
         p0V, p1V, pAb = BayesBase.trainNB0(trainMat, classList)
-        # print vocabList
         return p0V, p1V, pAb,vocabList  # len(vocabList)应该是1305
 
     def BayesOperation(self,input):
-
         news_text = input
         input_word = self._TextSplit(news_text)
         vec2Classify = []
