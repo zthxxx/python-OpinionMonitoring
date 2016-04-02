@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 try:
     import MySQLdb
+    import MySQLdb.cursors
 except:
     import pymysql as MySQLdb
+    import pymysql.cursors
 import time
 
 class MysqlDBOperation:
@@ -14,6 +16,7 @@ class MysqlDBOperation:
         self.connectConfig["passwd"] = passwd
         self.connectConfig["db"] = db
         self.connectConfig["charset"] = charset
+        self.connectConfig["cursorclass"] = MySQLdb.cursors.DictCursor
         self.MysqlLinker = None
 
     def __del__(self):
@@ -42,8 +45,7 @@ class MysqlDBOperation:
         if (self.MysqlLinker is None):
             self.MysqlLinker = MySQLdb.connect(**self.connectConfig)
 
-
-    #@IsRaiseError
+    @IsRaiseError
     def CloseConnect(self):
         if (self.MysqlLinker is not None):
             self.MysqlLinker.close()
@@ -53,17 +55,19 @@ class MysqlDBOperation:
 
     #@IsRaiseError
     def Select(self,sqlSentence,args=()):
-        cursor = self.MysqlLinker.cursor(MySQLdb.cursors.DictCursor)
+        cursor = self.MysqlLinker.cursor()#MySQLdb.cursors.DictCursor)
         cursor.execute(sqlSentence,args)
         result = cursor.fetchall()
+        cursor.close()
         return result
 
     #@IsRaiseError
     def CallPorcess(self,procname,args=()):
-        cursor = self.MysqlLinker.cursor(MySQLdb.cursors.DictCursor)
+        cursor = self.MysqlLinker.cursor()#MySQLdb.cursors.DictCursor)
         cursor.callproc(procname,args)
         self.TryCommit()
         result = cursor.fetchall()
+        cursor.close()
         return result
 
     #@IsRaiseError
@@ -74,6 +78,7 @@ class MysqlDBOperation:
         else:
             count = cursor.execute(sqlSentence,args)
         self.TryCommit()
+        cursor.close()
         return count
 
     #@IsRaiseError
@@ -81,6 +86,7 @@ class MysqlDBOperation:
         cursor = self.MysqlLinker.cursor()
         cursor.execute(sqlSentence,args)
         self.TryCommit()
+        cursor.close()
         return None
 
 

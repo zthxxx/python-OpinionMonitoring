@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 from snownlp import SnowNLP
-import BayesBase
+from  BayesProcess import BayesBase
 import json
 import re
 import sys
@@ -74,10 +74,3 @@ class BayesClassify():
         Newstype = BayesBase.classifyNB(vec2Classify,self.p0Vector,self.p1Vector,self.pAb) # 进行分类
         return Newstype
 
-
-if  __name__ == '__main__':
-    bayes = BayesClassify()
-    p0V, p1V, pAb,vocabList = bayes._TrainSet()
-    # NPlist = p0V.tolist()
-    # print NPlist
-    print bayes.BayesOperation(u"日绵阳平武气温提升大地依旧被厚厚冰雪覆盖",p0V, p1V, pAb,vocabList)
