@@ -38,7 +38,7 @@ class SpidersManager:
     def StartMonitor(self):
         self.SpidersConnectServer()
         self.StartSpiderList()
-dasgdasd
+
     def StopSpiderList(self):
         map(lambda spider : hasattr(spider,"StopMonirot") and spider.StopMonirot(),self.spiderList)
 
