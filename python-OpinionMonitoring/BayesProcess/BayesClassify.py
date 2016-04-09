@@ -70,7 +70,7 @@ class BayesClassify():
         news_text = input
         input_word = self._TextSplit(news_text)
         vec2Classify = []
-        vec2Classify.append(BayesBase.setOfWords2Vec(self.vocabularies, input_word))
+        vec2Classify.append(BayesBase.bagOfWords2Vec(self.vocabularies, input_word))
         Newstype = BayesBase.classifyNB(vec2Classify,self.p0Vector,self.p1Vector,self.pAb) # 进行分类
         return Newstype
 
