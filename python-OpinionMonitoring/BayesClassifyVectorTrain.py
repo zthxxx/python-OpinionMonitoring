@@ -20,6 +20,6 @@ if  __name__ == '__main__':
     mysqlORM.Connect()
 
     bayes = BayesClassify()
-    p0Vector,p1Vector,pAb,vocabularies= bayes._TrainSet(mysqlORM.SelectTrainsetClassified(1),mysqlORM.SelectTrainsetClassified(0))
+    p0Vector,p1Vector,vocabularies= bayes.TrainSet(mysqlORM.SelectTrainsetClassified(1),mysqlORM.SelectTrainsetClassified(0))
     mysqlORM.InsertBayesVector(p0Vector,p1Vector,vocabularies)
     print("OK")

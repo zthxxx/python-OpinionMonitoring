@@ -33,7 +33,7 @@ if  __name__ == '__main__':
         if(newsList is not None):
             for newDict in newsList:
                 title = newDict["NoPunctuationTitle"]
-                newDict["isAccident"] = bayes.BayesOperation(title)
+                newDict["isAccident"] = bayes.BayesClassifyOperation(title)
                 mysqlORM.SaveAPieceNews(**newDict)
 
 

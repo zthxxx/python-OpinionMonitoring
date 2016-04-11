@@ -33,40 +33,40 @@ class BayesClassify():
         """
             向量化方法
         """
-        split_list = self._TextSplit(self,news_text)
-        text_vec = bayes.setOfWords2Vec(dic_set, split_list)
+        split_list = self._TextSplit(news_text)
+        text_vec = BayesBase.setOfWords2Vec(dic_set, split_list)
         return text_vec
 
-    def _TrainSet(self,accidentNews,normalNews):
+    def TrainSet(self,accidentNews,normalNews):
         """
             建立测试集
         """
-        docList=[]; classList=[]; fullText=[]
+        docList=[]
+        classList=[]
+        vocabularies=set()
+        trainMat = []
         # TODO rebulid the method of DB operation
 
 
         for news_title in accidentNews:
             wordList = self._TextSplit(news_title)
             docList.append(wordList)
-            fullText.extend(wordList)
+            vocabularies = vocabularies | set(wordList)
             classList.append(1)
 
         for news_title in normalNews:
             wordList = self._TextSplit(news_title)
             docList.append(wordList)
-            fullText.extend(wordList)
+            vocabularies = vocabularies | set(wordList)
             classList.append(0)
 
-        vocabList = BayesBase.createVocabList(docList)  # 去重操作&成为字典
-
-        trainMat = []
-
+        vocabularyList = list(vocabularies)
         for postingDoc in docList:
-            trainMat.append(BayesBase.setOfWords2Vec(vocabList, postingDoc))
-        p0V, p1V, pAb = BayesBase.trainNB0(trainMat, classList)
-        return p0V, p1V, pAb,vocabList  # len(vocabList)应该是1305
+            trainMat.append(BayesBase.bagOfWords2Vec(vocabularyList, postingDoc))
+        p0V, p1V = BayesBase.trainNB0(trainMat, classList)
+        return p0V, p1V,vocabularyList  # len(vocabList)应该是1305
 
-    def BayesOperation(self,input):
+    def BayesClassifyOperation(self, input):
         news_text = input
         input_word = self._TextSplit(news_text)
         vec2Classify = []
