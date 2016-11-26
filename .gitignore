@@ -1,6 +1,6 @@
-python-OpinionMonitoring\.idea\
-python-OpinionMonitoring/.idea/
+.idea\
+.idea/
 *.pyc
 *.conf
 *.ini
-*.xml
+!ServerConfigSample.ini

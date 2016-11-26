@@ -1,0 +1,6 @@
+beautifulsoup4==4.5.1
+dill==0.2.5
+numpy==1.11.2
+PyMySQL==0.7.9
+pyreadline==2.1
+snownlp==0.12.3
