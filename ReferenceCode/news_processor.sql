@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : YiXueChe_DB_Test
+Source Server         : Mysql
 Source Server Version : 50621
 Source Host           : 127.0.0.1:3306
 Source Database       : news_processor

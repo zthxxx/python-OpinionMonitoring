@@ -19,7 +19,7 @@ class NewsProcessMysqlDBOperation(MysqlDBOperation):
         return resultList
 
     def InsertBayesVector(self,p0VectorList,p1VectorList,VocabularysList):
-        self.CreateOrDelete("truncate news_processor.BayesVocabularyVector")
+        self.CreateOrDelete("truncate news_processor.bayes_vocabulary_vector")
         for count, p0Vecrot in  enumerate(p0VectorList):
             self.CallPorcess("InsertBayesVector",(p0Vecrot,p1VectorList[count],VocabularysList[count]))
 
