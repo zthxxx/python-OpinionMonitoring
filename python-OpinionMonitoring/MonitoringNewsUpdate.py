@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+# python 2.7
 import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 sys.setrecursionlimit(1000000)
 import json
 
