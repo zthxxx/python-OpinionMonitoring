@@ -14,11 +14,8 @@ trusted-host = pypi.douban.com
 cd ~
 mkdir Download
 cd Download
-sudo curl -sSL https://get.docker.com/ | sh
-sudo usermod -aG docker ubuntu
-sudo service docker start
 
-su ubuntu -s /bin/bash Server_docker_init.sh
+su ubuntu -c ./Server_docker_init.sh
 exit
 
 
